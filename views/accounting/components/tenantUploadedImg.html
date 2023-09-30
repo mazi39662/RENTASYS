@@ -1,0 +1,99 @@
+
+
+<div class="upload-img-container">
+    <div class="container">
+        <label for="imageInput" class="input-item-box">
+            Select Image: <input type="file" accept="image/*" class="choose-file" id="imageInput" capture>
+        </label>
+    </div>
+    
+    <div class="container">
+        <img id="previewImage">
+    </div>
+    
+    <div class="container">
+        <button type="button" class="btn btn-danger btn-lg float-r btn-style">Reject</button>
+        <button type="button" class="btn btn-success btn-lg float-r btn-style">Submit</button>
+    </div>
+    
+</div>
+
+
+<script>
+    // Access the file input element
+    const imageInput = document.getElementById('imageInput');
+
+    // Attach an event listener to handle file selection
+    imageInput.addEventListener('change', handleFileSelect);
+
+    // Function to handle file selection
+    function handleFileSelect(event) {
+    // Get the selected file
+    const selectedFile = event.target.files[0];
+
+    // Create a FileReader object to read the file
+    const reader = new FileReader();
+
+    // Set the function to be executed when the file is loaded
+    reader.onload = function (loadEvent) {
+        // Get the image data URL
+        const imageDataUrl = loadEvent.target.result;
+
+        // Set the image source to the data URL
+        const previewImage = document.getElementById('previewImage');
+        previewImage.src = imageDataUrl;
+    }
+
+    // Read the selected file as data URL
+    reader.readAsDataURL(selectedFile);
+    }
+</script>
+
+<style scoped>
+    .upload-img-container {
+        padding: 10px;
+        min-width: 100px;
+        border-radius: 10px;
+        border: 1px solid #FFF;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    .img-container {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+        border-radius: 10px;
+        border: 1px solid #FFF;
+        background: #3189FB;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    
+    .input-item-box {
+        border-radius: 20px;
+        background: #EEF0F4;
+        box-shadow: 15.32px 15.32px 18px #D0D2D6, -15.32px -15.32px 18px #FFFFFF;
+        border: none; 
+        font-weight: bold;
+        color: rgb(151, 151, 151);
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px;
+        width: 100%;
+        overflow: hidden;
+    }
+    #previewImage {
+       width: 100%;
+       padding: 5px;
+       max-width: 100%;
+       height: 100%;
+       margin-bottom: 30px;
+       box-shadow: 15.32px 15.32px 18px #D0D2D6, -15.32px -15.32px 18px #FFFFFF, inset 9.91px 9.91px 15px #D9DADE, inset -9.91px -9.91px 15px #FFFFFF;
+       border-radius: 30px;
+       border: 5px solid #EEF0F4;
+    }
+    .btn-style {
+        padding: 10px 20px;
+        width: fit-content;
+        float: right;
+        margin: 10px;
+    }
+</style>

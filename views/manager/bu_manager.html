@@ -1,0 +1,73 @@
+{{extend 'layout.html'}}
+
+{{
+  branch_names = {
+    'Lahug': URL('manager', 'manager', args=['Lahug']),
+    'Branch 1': URL('manager', 'manager', args=['Branch1']),
+    'Branch 2': URL('manager', 'manager', args=['Branch2']),
+    'Branch 3': URL('manager', 'manager', args=['Branch3']),
+  }
+}}
+
+<div class="user-type-container">
+  <div class="nav-btn-container">
+    {{for branch_name, url in branch_names.items():}}
+      <a href="{{=url}}" class="nav-btn branch-container icon-link"><i class="fa-regular fa-folder fa-2xl icon-folder"></i>{{=branch_name}}</a>
+    {{pass}}
+  </div>
+</div>
+
+<script>
+  const iconLinks = document.querySelectorAll('.icon-link');
+
+  iconLinks.forEach((link) => {
+      link.addEventListener('mouseover', () => {
+          const icon = link.querySelector('i');
+          icon.classList.add('fa-folder-open');
+      });
+
+      link.addEventListener('mouseout', () => {
+          const icon = link.querySelector('i');
+          icon.classList.remove('fa-folder-open');
+      });
+  });
+</script>
+
+<style scoped>
+  .nav-btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav-btn {
+    font-family: Rubik One;
+    text-decoration: none;
+    font-size: 24px;
+    border-radius: 10px;
+  }
+
+  .branch-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    text-decoration: none;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    height: 150px;
+    width: fit-content;
+    padding: 20px 10px 0 10px;
+    background: #EEF0F4;
+    box-shadow: inset 9.91px 9.91px 15px #D9DADE, inset -9.91px -9.91px 15px #FFFFFF;
+    min-width: 200px;
+  }
+  .nav-btn:hover {
+    text-decoration: none;
+  }
+  .user-type-container {
+    height: 100vh;
+  }
+</style>

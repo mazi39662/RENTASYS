@@ -1,0 +1,32 @@
+{{extend 'layout.html'}}
+
+<div class="user-type-container">
+  <h4 class="text-center">User Type</h4><br/>
+  <p class="text-center">Login Page > Usertype > Content</p>
+  <div class="nav-btn-container">
+    <a href="{{=URL('tenant','tenant')}}" class="nav-btn">Tenant</a>
+    <a href="{{=URL('manager','bu_manager')}}" class="nav-btn">Manager</a>
+    <a href="{{=URL('accounting','accounting_branches')}}" class="nav-btn">Accounting</a>
+    <a href="{{=URL('ceo','ceo_branches')}}" class="nav-btn">CEO</a>
+  </div>
+</div>
+<style scoped>
+  .nav-btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .nav-btn {
+    font-family: Rubik One;
+    text-decoration: none;
+    font-size: 24px;
+    height: fit-content;
+  }
+  .nav-btn:hover {
+    text-decoration: none;
+  }
+  .user-type-container {
+    height: 100vh;
+  }
+</style>

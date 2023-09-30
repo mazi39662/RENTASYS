@@ -1,0 +1,89 @@
+{{extend 'layout.html'}}
+
+<div class="container-fluid content-container">
+    <a href="{{=URL('accounting','accounting_branches')}}" class="return-btn" style="text-decoration: none;"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
+    <div class="margin-top-mobile"></div>
+    <h2 class="text-center title-style">Bank Reconciliation</h2>
+    <div class="content-accounting flex-horizontal">
+        {{include 'accounting/components/accountingTable.html'}}
+    </div>
+    <section class="spikes"></section>
+</div>
+
+<style scoped>  
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+    .content-container {
+        height: fit-content;
+        padding: 0 0 100px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .flex-v {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .flex-horizontal {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        gap: 20px;
+        width: 100%;
+    }
+    .content-accounting {
+        width: 100%;
+    }
+    .title-style {
+        font-family: Roboto;
+        font-weight: 700;
+    }
+    .spikes {
+        position: relative;
+        background: #ffffff;
+        height: 50px;
+        width: 90%;
+    }
+
+    .spikes::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        left: -0%;
+        top: 100%;
+        z-index: 10;
+        display: block;
+        height: 50px;
+        background-size: 50px 100%;
+        background-image: linear-gradient(135deg, #ffffff 25%, transparent 25%), linear-gradient(225deg, #ffffff 25%, transparent 25%);
+        background-position: 0 0;
+    }
+    .return-btn {
+        width: 70px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        border-radius: 10px;
+        background: #FFF;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        position: absolute;
+        top: 80px;
+        left: 20px;
+    }
+    .return-btn:hover {
+        border: 3px solid #3189FB;
+    }
+    @media only screen and (max-width: 1080px) {
+        .sm-screen {
+            flex-direction: column;
+        }
+        .margin-top-mobile {
+            margin-top: 50px;
+        }
+    }
+</style>

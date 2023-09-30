@@ -1,0 +1,170 @@
+{{extend 'layout.html'}}
+
+<div class="announcement-container container">
+    <div class="left-container">
+        <p class="announcement-title">
+            Announcement <i class="fa-solid fa-bullhorn"></i>
+        </p>
+        <p class="announcement-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+    </div>
+</div>
+<br>
+
+{{include 'tenant/components/historical_payment.html'}}
+<br>
+{{include 'tenant/components/rental_deposit.html'}}
+<br>
+{{include 'tenant/components/water_bill.html'}}
+<br>
+{{include 'tenant/components/electric_bill.html'}}
+<br>
+{{include 'tenant/components/elevator_bill.html'}}
+<br>
+{{include 'tenant/components/monthly_rental.html'}}
+<br>
+{{include 'tenant/components/total_comp.html'}}
+
+<br>
+
+<p class="text-center">Select File</p>
+
+<div class="container">
+    <label for="imageInput" class="input-item-box">
+        <i class="fa-solid fa-upload"></i> <input type="file" accept="image/*" class="choose-file" id="imageInput">
+    </label>
+</div>
+
+<br>
+
+<div class="container">
+    <img id="previewImage">
+</div>
+
+<div class="btn-container container">
+    <button type="button" class="btn btn-primary btn-lg btn-style">Submit</button>
+</div>
+<br>
+<br>
+<br>
+
+<script>
+    // Access the file input element
+    const imageInput = document.getElementById('imageInput');
+
+    // Attach an event listener to handle file selection
+    imageInput.addEventListener('change', handleFileSelect);
+
+    // Function to handle file selection
+    function handleFileSelect(event) {
+    // Get the selected file
+    const selectedFile = event.target.files[0];
+
+    // Create a FileReader object to read the file
+    const reader = new FileReader();
+
+    // Set the function to be executed when the file is loaded
+    reader.onload = function (loadEvent) {
+        // Get the image data URL
+        const imageDataUrl = loadEvent.target.result;
+
+        // Set the image source to the data URL
+        const previewImage = document.getElementById('previewImage');
+        previewImage.src = imageDataUrl;
+    }
+
+    // Read the selected file as data URL
+    reader.readAsDataURL(selectedFile);
+    }
+</script>
+
+<style scoped>
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+    .float-r {
+        float: right;
+    }
+    .text-center {
+        text-align: center;
+        color: #a8abb0;
+    }
+    .margin-bottom {
+        margin-bottom: 150px;
+    }
+    .announcement-container {
+        border-radius: 10px;
+        background: #3189FB;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        height: fit-content;
+        min-height: 100px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+    .announcement-title {
+        color: #FFF;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-align: left;
+    }
+    .announcement-text {
+        color: #FFF;
+        text-align: center;
+        font-size: 16px;
+        font-style: normal;
+        line-height: normal;
+        text-align: left;
+        display: flex;
+        flex-wrap: wrap;
+        /* margin: 0 5% 10px 5%; */
+    }
+    .img-container {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+        border-radius: 10px;
+        border: 1px solid #FFF;
+        background: #3189FB;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    
+    .input-item-box {
+        border-radius: 20px;
+        background: #EEF0F4;
+        box-shadow: 15.32px 15.32px 18px #01000f, -15.32px -15.32px 18px #01000f71;
+        border: none; 
+        font-weight: bold;
+        color: rgb(151, 151, 151);
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px;
+        width: 100%;
+        overflow: hidden;
+    }
+    #previewImage {
+       width: 100%;
+       padding: 5px;
+       max-width: 100%;
+       height: 100%;
+       margin-bottom: 30px;
+       border-radius: 30px;
+       border: 5px solid #EEF0F4;
+    }
+    .btn-container {
+        display: flex;
+        justify-content: right;
+    }
+    @media (min-width: 768px) {
+            /* Add responsive styles here */
+            .announcement-container {
+                padding: 10px 30px;
+            }
+        }
+</style>
