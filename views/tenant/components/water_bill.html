@@ -1,0 +1,69 @@
+<div class="container bg-white spikes mb-4 pb-5 pt-3">
+    <h4 class="bill-title"><i class="fa-solid fa-droplet"></i> Water Sub-meter Reading</h4>
+    <table class="water-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Room</th>
+                <td class="text-r">01</td>
+            </tr>
+            <tr>
+                <th scope="row">Prce/m3</th>
+                <td class="text-r">P 0.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Previous Reading</th>
+                <td class="text-r">P 0.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Present Reading</th>
+                <td class="text-r">P 0.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Consume m3/Month</th>
+                <td class="text-r">P 0.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Total</th>
+                <td class="text-r">P 0.00</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<style scoped>
+    .bg-white {
+        background-color: #fff;
+    }
+    .bill-title {
+        text-align: center;
+    }
+    .water-content-container {
+        border-radius: 10px;
+        /* background: #3189FB; */
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        height: fit-content;
+    }
+    .water-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            /* Add responsive styles here */
+            table {
+                font-size: 12px;
+            }
+        }
+</style>

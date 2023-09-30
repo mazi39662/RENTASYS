@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+    <!-- Always force latest IE rendering engine
+         (even in intranet) & Chrome Frame
+         Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+    <!--  Mobile Viewport Fix
+          j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+          device-width: Occupy full width of the screen in its current orientation
+          initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+          user-scalable = yes allows the user to zoom in -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{=response.title or request.application}}</title>
+    <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+    <meta name="application-name" content="{{=request.application}}">
+    <!-- Speaking of Google, don't forget to set your site up:
+         http://google.com/webmasters -->
+    <meta name="google-site-verification" content="">
+    <!-- include stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap4.css')}}"/>
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.icon')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+    <!-- Include Bootstrap CSS (if not already included) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- Include lightbox2 CSS and JavaScript -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css"> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
+    <!-- Include jQuery and Bootstrap JavaScript (if not already included) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+         HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    
+    <!-- Favicons -->
+    {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+    {{block head}}{{end}}
+
+    <!-- nav style -->
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Rubik+One');
+      a {
+        text-decoration: none;
+      }
+      .flex-h {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .top-margin {
+        margin-top: 100px;
+      }
+      .navbar {
+        background: #3189FB;
+        width: 100%;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        border-radius: 0 0 40px 40px;
+        margin: 0 auto;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+      }
+      .logo {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      .logo img {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+      } 
+      .logo h3 {
+        color: #FFF;
+        text-align: center;
+        font-family: Rubik One;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0;
+      }
+      .bg-theme {
+        background: rgb(1,0,15);
+        background: linear-gradient(0deg, rgba(1,0,15,1) 0%, rgba(49,137,251,1) 35%, rgba(255,255,255,1) 100%);
+      }
+      .profile-btn {
+        border-radius: 50%;
+        padding: 0;
+      }
+      .btn-group {
+        border-radius: 100%;
+      }
+      .profile-container {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @media screen and (max-width: 767px) {
+        .navbar {
+          justify-content: space-around;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="w2p_flash alert alert-dismissable">{{=response.flash or ''}}</div> -->
+    <!-- Navbar ======================================= -->
+    <nav class="navbar fixed-top">
+      <div class="logo">
+        <img src="/RENTASYS/static/images/logo.png" alt="WJV logo">
+        <h3>WJV Rental</h3>
+      </div>
+      
+      <div class="flex-h">
+        <div class="btn-group">
+          <button type="button" class="btn btn-outline-light profile-btn" data-toggle="modal" aria-haspopup="true" data-target="#exampleModalCenter" aria-expanded="false">
+            <div class="profile-container">
+              <i class="fa-solid fa-user fa-xl"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="exampleModalLongTitle">WJV Rental</h5> -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <button type="button" class="btn btn-primary btn-lg btn-block"><i class="fa-solid fa-user"></i> <br>Profile</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block"><i class="fa-solid fa-unlock-keyhole"></i> <br>Change Password</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="logoutButton" class="btn btn-secondary btn-lg btn-block"><i class="fa-solid fa-right-from-bracket"></i> <br>Log Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('logoutButton').addEventListener('click', function() {
+        window.location.href = '{{=URL('default','login')}}';
+        console.log("log out")
+      });
+    </script>
+
+    <!-- Masthead ===================================== -->
+    {{block header}}
+    {{end}}
+    <!-- Main ========================================= -->
+    <!-- Begin page content -->
+    <div class="container-fluid main-container bg-theme">
+      
+      
+      <div class="top-margin"></div>
+      
+      {{include}}
+      <!-- {{#=response.toolbar() if response.show_toolbar else ''}} -->
+    </div>
+
+    {{block footer}} <!-- this is default footer -->
+    <footer class="footer container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="copyright pull-left">{{=T('Copyright')}} &#169; {{=request.now.year}}</div>
+          <div id="poweredBy" class="pull-right">
+            {{=T('Developed by: Franz & Giov')}}
+            <!-- <a href="http://www.web2py.com/">web2py</a> -->
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+    {{end}}
+    <!-- The javascript =============================== -->
+    <script src="{{=URL('static','js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{=URL('static','js/web2py-bootstrap4.js')}}"></script>
+    {{block page_js}}{{end page_js}}
+    {{if response.google_analytics_id:}}
+    <!-- Analytics ==================================== -->
+    <script src="{{=URL('static','js/analytics.min.js')}}"></script>
+    <script type="text/javascript">
+      analytics.initialize({
+      'Google Analytics':{trackingId:'{{=response.google_analytics_id}}'}
+      });
+    </script>
+    
+    {{pass}}
+  </body>
+</html>

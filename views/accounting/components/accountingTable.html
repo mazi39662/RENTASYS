@@ -1,0 +1,147 @@
+<div class="table-container">
+    <table class="table table-hover">
+        <thead>
+            <tr class="stick-h">
+                <th scope="col" class="col-1">#</th>
+                <th scope="col" class="col-1">Unit</th>
+                <th scope="col" class="col-4">Fullname</th>
+                <th scope="col" class="col-2">Total Amount Deposit</th>
+                <th scope="col" class="col-2">Date Deposit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{for x_ in range(65):}}
+            <tr>
+                <th scope="row">{{=x_ + 1}}</th>
+                <td>Room: {{=x_ + 1}}</td>
+                <td>Jhon Doe</td>
+                <td>+639Something</td>
+                <td>mm/dd/yyyy</td>
+                <td class="col-1"><button class="btn btn-primary view-details" data-toggle="modal" data-target="#detailsModal">View Details</button></td>
+                <td class="col-1"><button class="btn btn-primary view-details" data-toggle="modal" data-target="#uploadImg">Upload Image</button></td>
+            </tr>
+            {{pass}}
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Unit:</strong> <span id="unit"></span></p>
+                <p><strong>Fullname:</strong> <span id="fullname"></span></p>
+                <p><strong>Electricity Bill:</strong> <span id="elecBill"></span></p>
+                <p><strong>Water Bill:</strong> <span id="waterBill"></span></p>
+                <p><strong>Elavator Bill:</strong> <span id="elevBill"></span></p>
+                <p><strong>Total:</strong> <span id="totalBill"></span></p>
+                
+                <div id="additionalDetails" class="image-container">
+                    <!-- Placeholder for random images -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="uploadImg" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Upload Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{include 'accounting/components/uploadImg.html'}}
+                <!-- Add more details here as needed -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const viewButtons = document.querySelectorAll(".view-details");
+        viewButtons.forEach(function (button, index) {
+            button.addEventListener("click", function () {
+
+                const fullname = "John Doe";
+                const unit = "Room: " + (index + 1);
+                const valSample = "P 0.00";
+
+                document.getElementById("fullname").textContent = fullname;
+                document.getElementById("unit").textContent = unit;
+                document.getElementById("elecBill").textContent = valSample;
+                document.getElementById("waterBill").textContent = valSample;
+                document.getElementById("elevBill").textContent = valSample;
+                document.getElementById("totalBill").textContent = valSample;
+
+                const additionalDetails = document.getElementById("additionalDetails");
+                additionalDetails.innerHTML = "";
+
+                const flexContainer = document.createElement("div");
+                flexContainer.classList.add("image-row");
+
+                for (let i = 0; i < 3; i++) {
+                    const imgContainer = document.createElement("div");
+                    imgContainer.classList.add("image-container");
+
+                    const img = document.createElement("a");
+                    img.href = `https://source.unsplash.com/1080x720/?money=${i}`;
+                    img.target = "_blank";
+                    img.innerHTML = `<img src="${img.href}" alt="Random Image ${i}" class="random-image">`;
+
+                    imgContainer.appendChild(img);
+                    flexContainer.appendChild(imgContainer);
+                }
+
+                additionalDetails.appendChild(flexContainer);
+            });
+        });
+    });
+</script>
+
+<style scoped>
+    th,td {
+        text-align: center;
+    }
+    .stick-h {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.14);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(6.7px);
+        -webkit-backdrop-filter: blur(6.7px);
+    }
+    .table-container {
+        background-color: #fff;
+        overflow: scroll;
+        height: 70vh;
+        width: 90%;
+        border-top: 3px solid rgb(0, 136, 255);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    .random-image {
+        width: 200px;
+        margin-bottom: 10px;
+    }
+    .image-container {
+        width: fit-content;
+    }
+    .image-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+    }
+</style>

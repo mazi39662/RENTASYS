@@ -1,0 +1,70 @@
+{{extend 'layout.html'}}
+
+<div class="container-fluid content-container">
+    <ul class="list-inline folder-container">
+        {{ for i in range(4): }}
+            <li class="branch-folder">
+                <a href="{{=URL('accounting','accounting')}}" class="icon-link branch-container" style="text-decoration: none;">
+                    <i class="fa-regular fa-folder fa-2xl icon-folder"></i>
+                    <h3>Branch Name</h3>
+                </a>
+            </li>
+        {{ pass }}
+    </ul>
+</div>
+
+<script>
+    const iconLinks = document.querySelectorAll('.icon-link');
+
+    iconLinks.forEach((link) => {
+        link.addEventListener('mouseover', () => {
+            const icon = link.querySelector('i');
+            icon.classList.add('fa-folder-open');
+        });
+
+        link.addEventListener('mouseout', () => {
+            const icon = link.querySelector('i');
+            icon.classList.remove('fa-folder-open');
+        });
+    });
+</script>
+
+<style scoped>
+    .folder-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .branch-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 30px;
+        text-decoration: none;
+        border: 5px solid rgb(255, 255, 255);
+        border-radius: 20px;
+        height: 150px;
+        width: fit-content;
+        padding: 20px 10px 0 10px;
+        background: #EEF0F4;
+        box-shadow: inset 9.91px 9.91px 15px #D9DADE, inset -9.91px -9.91px 15px #FFFFFF;
+    }
+    .branch-folder {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .content-container {
+        height: 100vh;
+    }
+    .icon-link i {
+        transition: all 0.7s ease-in-out;
+        font-size: 50px;
+    }
+</style>

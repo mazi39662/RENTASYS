@@ -1,0 +1,51 @@
+<div class="container-boxes spikes">
+    <h3>Announcement</h3>
+    <div class="input-group">
+        <textarea class="form-control" aria-label="With textarea" placeholder="Enter announcement"></textarea>
+    </div>
+    <p class="note">
+        Note: This Announcement will be viewed by all the tenants that has the WJV Rental Web-app.
+    </p>
+
+    <button type="button" class="btn btn-success btn-style">Submit</button>
+    
+</div>
+
+<style scoped>
+    .container-boxes {
+        width: 300px;
+        height: fit-content;
+        flex-shrink: 0;
+        border-radius: 10px 10px 0 0;
+        background: #FFF;
+        padding: 20px 10px 70px 10px;
+        margin-bottom: 50px;
+    }
+    .btn-style {
+        float: right;
+        margin: 10px;
+        width: 100px;
+        border-radius: 10px;
+    }
+    .note {
+        color: #b6b6b6;
+    }
+    .spikes {
+        position: relative;
+        background: #FFF;
+    }
+
+    .spikes::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        left: -0%;
+        top: 100%;
+        z-index: 10;
+        display: block;
+        height: 50px;
+        background-size: 50px 100%;
+        background-image: linear-gradient(135deg, #FFF 25%, transparent 25%), linear-gradient(225deg, #FFF 25%, transparent 25%);
+        background-position: 0 0;
+        }
+</style>

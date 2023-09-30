@@ -1,0 +1,74 @@
+{{extend 'layout.html'}}
+<div class="container">
+
+
+<div class="row">
+  <div id="web2py_user_form" class="col-lg-6 neomorphic-container">
+    <h2 class="neomorphic-heading">
+      {{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
+    </h2>
+    {{=form}}
+    {{if request.args(0)=='login' and not 'register' in auth.settings.actions_disabled:}}
+    <a class="btn btn-primary neomorphic-button" href="{{=URL('user/register')}}">{{=T('Register')}}</a>
+    <br/>
+    {{pass}}
+    {{if request.args(0)=='login' and not 'retrieve_password' in auth.settings.actions_disabled:}}
+    <a class="btn btn-link neomorphic-link" href="{{=URL('user/retrieve_password')}}">{{=T('Lost your password?')}}</a>
+    {{pass}}
+    {{if request.args(0)=='register':}}
+    <a class="btn btn-link neomorphic-link" href="{{=URL('user/login')}}">{{=T('Login')}}</a>
+    {{pass}}
+  </div>
+</div>
+
+</div>
+
+
+
+{{block page_js}}
+<script>
+    jQuery("#web2py_user_form input:visible:enabled:first").focus();
+{{if request.args(0)=='register':}}
+    web2py_validate_entropy(jQuery('#auth_user_password'),100);
+{{elif request.args(0)=='change_password':}}
+    web2py_validate_entropy(jQuery('#no_table_new_password'),100);
+{{pass}}
+</script>
+{{end page_js}}
+
+<style scoped>
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+  .neomorphic-container {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 10px #b9b9b9, -5px -5px 10px #ffffff;
+  }
+
+  .neomorphic-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .neomorphic-button,
+  .neomorphic-link {
+    text-decoration: none;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #b9b9b9, -3px -3px 5px #ffffff;
+  }
+
+  .neomorphic-button {
+    background-color: #007BFF;
+    color: #fff;
+  }
+
+  .neomorphic-link {
+    color: #007BFF;
+  }
+</style>
